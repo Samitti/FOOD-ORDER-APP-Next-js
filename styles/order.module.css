@@ -1,0 +1,42 @@
+.container {
+  padding: 50px;
+  display: flex;
+}
+
+.left {
+  flex: 2;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.right {
+  flex: 1;
+}
+
+.wrapper {
+  width: 90%;
+  max-height: 300px;
+  background-color: #333;
+  padding: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.totalTextTitle {
+  margin-right: 10px;
+}
+
+.button {
+  background-color: white;
+  height: 30px;
+  color: teal;
+  margin-top: 20px;
+  cursor: not-allowed;
+}

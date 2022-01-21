@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Food Ordering App UI
+
+This is the front-end part of the food ordering app for a pizza shop. It allows users to select from different
+types of pizza and also different price options depending on the size. It has a payment gateway and then finally the user can track the state of the ordered pizza, until delivery.
+
+## Built With
+
+- React
+- Next.js
+- npm
+- ES6
+- CSS
+
+[Live Demo Link]()
+
+![screenshot](./public/img/Capture.JPG)
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy and running follow these simple example steps.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Setup
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node js
+- Clone the repo and cd in it.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Install
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Run `npm install` in your terminal
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Usage
 
-## Learn More
+- Run `npm run dev` in your terminal
 
-To learn more about Next.js, take a look at the following resources:
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Tests
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To run tests
 
-## Deploy on Vercel
+- No tests yet
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+👤 **Samuel Teweldebrhan Ghebremeskel**
+
+- Github: [@githubhandle](https://github.com/Samitti)
+- Twitter: [@twitterhandle](https://twitter.com/Samuel63734232)
+- Linkedin: [linkedin](https://www.linkedin.com/in/samuel-ghebremeskel-29685811a/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/Samitti/Catalogue-Project-Redux/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!

@@ -7,8 +7,12 @@ const Product = ({pizza}) => {
     const [price, setPrice] = useState(pizza.prices[0]);
     const [size, setSize] = useState(0);
 
-    const handleSize = (sizeIndex) => {
+    const changePrice = (number) => {
+        setPrice(price + number);
+    }
 
+    const handleSize = (sizeIndex) => {
+        const difference = pizza.prices[sizeIndex] -
     }
 
     const handleChange = (e, option) => {

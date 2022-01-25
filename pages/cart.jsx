@@ -9,17 +9,33 @@ import {
     PayPalButtons,
     usePayPalScriptReducer
 } from "@paypal/react-paypal-js";
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { reset } from "../redux/cartSlice"
 
 const Cart = () => {
     const [open, setOpen] = useState(false);
 
-    // This values are the props in the UI
-    const amount = "2";
+    const cart = useSelector(state => state.cart);
+    const amount = cart.total;
     const currency = "USD";
     const style = { "layout": "vertical" };
 
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart);
+    const router = useRouter();
+
+    const createOrder = async (data) => {
+        try {
+            const res = await axios.post("http://localhost:3000/api/orders", data);
+
+             if (res.status === 201) {
+                dispatch(reset());
+                router.push(`/orders/${res.data._id}`);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
   
     // Custom component to wrap the PayPalButtons and handle currency changes
 const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -64,7 +80,13 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
                     }}
                     onApprove={function (data, actions) {
                         return actions.order.capture().then(function (details) {
-                            // Your code here after capture the order
+                            const shipping = details.purchase_units[0].shipping;
+                            createOrder({
+                                customer: shipping.name.full_name,
+                                address: shipping.address.address_line_1,
+                                total: cart.total,
+                                method: 1,
+                            });
                         });
                     }}
                 />
@@ -86,36 +108,36 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
                         <th>Total</th>
                         </tr>
                         </tbody>
-                    {cart.products.map((product) => (
-                        <tbody>
-                        <tr className={styles.tr} key={product._id}>
-                            <td>
-                                <div className={styles.imgContainer}>
-                                    <Image src={product.img} layout="fill" objectFit="cover" alt="" />
-                                </div>                            
-                            </td>
-                            <td>
-                                <span className={styles.name}>{ product.title }</span>
-                            </td>
-                            <td>
-                                <span className={styles.extras}>
-                                    {product.extras.map(extra => (
-                                        <span key={extra._id}>{ extra.text}, </span>
-                                    ))}
-                                </span>
-                            </td>
-                            <td>
-                                <span className={styles.price}>${product.price}</span>
-                            </td>
-                            <td>
-                                <span className={styles.quantity}>{ product.quantity }</span>
-                            </td>
-                            <td>
-                                <span className={styles.total}>${product.price * product.quantity}</span>
-                            </td>
-                            </tr> 
-                            </tbody>
-                    ))}
+                        <tbody>                    
+                            {cart.products.map((product) => (
+                                <tr className={styles.tr} key={product._id}>
+                                    <td>
+                                        <div className={styles.imgContainer}>
+                                            <Image src={product.img} layout="fill" objectFit="cover" alt="" />
+                                        </div>                            
+                                    </td>
+                                    <td>
+                                        <span className={styles.name}>{ product.title }</span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.extras}>
+                                            {product.extras.map(extra => (
+                                                <span key={extra._id}>{ extra.text}, </span>
+                                            ))}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.price}>${product.price}</span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.quantity}>{ product.quantity }</span>
+                                    </td>
+                                    <td>
+                                        <span className={styles.total}>${product.price * product.quantity}</span>
+                                    </td>
+                                    </tr> 
+                            ))}
+                        </tbody>
                                        
                 </table>
             </div>

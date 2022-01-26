@@ -57,6 +57,22 @@
   margin-top: 20px;
 }
 
+.paymentMethods {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.payButton {
+  padding: 10px 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  background-color: white;
+  color: teal;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 480px) {
   .container {
     flex-direction: column;

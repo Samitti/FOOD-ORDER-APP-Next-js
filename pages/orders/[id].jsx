@@ -1,9 +1,10 @@
+import axios from 'axios';
 import Image from 'next/image';
 import React from 'react';
 import styles from "../../styles/order.module.css";
 
-const Order = () => {
-    const status = 0;
+const Order = ({order}) => {
+    const status = order.status;
     const statusClass = (index) => {
         if (index - status < 1) return styles.done;
         if (index - status === 1) return styles.inProgress;
@@ -15,28 +16,32 @@ const Order = () => {
             <div className={styles.left}>
                 <div className={styles.row}>
                     <table className={styles.table}>
+                    <tbody>
                     <tr className={styles.trTitle}>
                         <th>Order Id</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Total</th>
                     </tr>
+                    </tbody>
+                     <tbody> 
                     <tr className={styles.tr}>                        
                         <td>
-                            <span className={styles.id}>1234567</span>
+                            <span className={styles.id}>{order._id}</span>
                         </td>
                         <td>
                             <span className={styles.name}>
-                                Samuel Tewelde
+                                {order.customer}
                             </span>
                         </td>
                         <td>
-                            <span className={styles.address}>Rubaga st. 212-33 Kt</span>
+                            <span className={styles.address}>{order.address}</span>
                         </td>
                         <td>
-                            <span className={styles.total}>$39.80</span>
+                            <span className={styles.total}>{order.total}</span>
                         </td>
                     </tr>                    
+                    </tbody>  
                     </table>                    
                 </div>
                 <div className={styles.row}>
@@ -88,5 +93,14 @@ const Order = () => {
         </div>
     );
 };
+
+export const getServerSideProps = async ({ params }) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  return {
+    props: {
+      order: res.data,
+    }
+  }
+}
 
 export default Order;

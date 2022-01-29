@@ -1,6 +1,6 @@
 # Food Ordering App UI
 
-This is the front-end part of the food ordering app for a pizza shop. It allows users to select from different
+This app is food ordering app for a pizza shop. It allows users to select from different
 types of pizza and also different price options depending on the size. It has a payment gateway and then finally the user can track the state of the ordered pizza, until delivery.
 
 ## Built With
